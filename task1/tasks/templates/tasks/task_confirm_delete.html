@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .delete-container {
+        max-width: 600px;
+        margin: 5rem auto;
+        background: #ffe4e6;
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+        color: #b91c1c;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .delete-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+    }
+
+    .btn-danger {
+        background: #f44336;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn-danger:hover {
+        background: #d32f2f;
+        transform: scale(1.05);
+    }
+
+    .btn-secondary {
+        background: #e5e7eb;
+        color: #374151;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .btn-secondary:hover {
+        background: #d1d5db;
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="delete-container">
+    <h2 class="delete-title">Вы уверены, что хотите удалить задачу "{{ task.title }}"?</h2>
+    <div class="btn-group">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Да, удалить</button>
+        </form>
+        <a href="{% url 'task_list' %}" class="btn-secondary">Отмена</a>
+    </div>
+</div>
+{% endblock %}
